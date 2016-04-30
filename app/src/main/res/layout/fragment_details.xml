@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="25dp"
+        tools:actionBarNavMode="standard"
+
+        tools:context="com.example.ABeeR.DetailsActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_poster"
+                android:layout_width="170dp"
+                android:layout_height="218dp"
+                android:src="@drawable/movie2" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/image_poster"
+                android:padding="10sp"
+                android:text="Date"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_date"
+                android:layout_toRightOf="@+id/image_poster"
+                android:padding="10sp"
+                android:text="rate"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_favourite"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_below="@+id/tv_rate"
+                android:layout_margin="17sp"
+                android:layout_toRightOf="@+id/image_poster"
+                android:background="@android:drawable/btn_star_big_off"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_poster"
+                android:padding="15dp"
+                android:text="movie Title"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_overview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:inputType="textMultiLine"
+                android:text="OverView" />
+
+            <Button
+                android:id="@+id/btn_trailer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_overview"
+                android:text="Trailers"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_overview"
+                android:layout_toRightOf="@+id/btn_trailer"
+                android:text="Reviews"
+                android:textAllCaps="false" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+

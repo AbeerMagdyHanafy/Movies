@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    >
+
+
+        android:orderInCategory="100" app:showAsAction="always" />
+    <item android:id="@+id/movie_popular" android:title="Popular"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item
+        android:id="@+id/movie_toprated" android:title="Top Rated"
+        android:orderInCategory="100" app:showAsAction="never"
+
+        ></item>
+
+    <item
+        android:id="@+id/favourite" android:title="My Favourite"
+        android:orderInCategory="100" app:showAsAction="never"
+        ></item>
+
+</menu>
