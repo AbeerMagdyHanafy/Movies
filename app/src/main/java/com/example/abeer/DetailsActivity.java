@@ -30,7 +30,7 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.moviedetail);
 
 
-        if (findViewById(R.id.fragment_details) == null) {
+       // if (findViewById(R.id.fragment_details) != null) {
 
             mTwoPane = true;
 
@@ -39,8 +39,8 @@ public class DetailsActivity extends AppCompatActivity {
                         .replace(R.id.fragment_details, new DetailsFragment())
                         .commit();
             }
-        } else {
-            mTwoPane = false;
-        }
+//        } else {
+//            mTwoPane = false;
+//        }
     }
 }

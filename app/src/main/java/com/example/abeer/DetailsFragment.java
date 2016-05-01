@@ -69,7 +69,6 @@ public class DetailsFragment extends Fragment {
 
     public void updateData(movie movie){
 
-
         Original_title = movie.getOriginal_title();//intent.getStringExtra("Original_title");
         Overview = movie.getOverview(); //intent.getStringExtra("Overview");
         backdrop_path = movie.getBackdrop_path(); //intent.getStringExtra("backdrop_path");
@@ -104,6 +103,8 @@ public class DetailsFragment extends Fragment {
             } while (cursor.moveToNext());
         }
 
+
+
     }
 
     @Override
@@ -137,6 +138,7 @@ public class DetailsFragment extends Fragment {
                 if (!(cursor.getInt(6) == (id))) {
                     Favourite = false;
                     btn_favourite.setBackgroundResource(android.R.drawable.btn_star_big_off);
+                    btn_favourite.setClickable(true);
                 } else if (cursor.getInt(6) == (id)) {
                     Favourite = true;
                     btn_favourite.setBackgroundResource(android.R.drawable.btn_star_big_on);

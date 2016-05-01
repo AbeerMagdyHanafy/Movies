@@ -15,11 +15,13 @@ public class Async_Task extends AsyncTask<String, Void, String> {
     String url = "";
     GridView_Adapter gridView_adapter;
     Context context;
+    GridView gridView;
 
-    public Async_Task(Context context, GridView_Adapter gridView_adapter, String url) {
+    public Async_Task(Context context, GridView_Adapter gridView_adapter, String url, GridView gridView) {
         this.gridView_adapter = gridView_adapter;
         this.context = context;
         this.url = url;
+        this.gridView = gridView;
     }
 
     protected String doInBackground(String... params) {
@@ -38,10 +40,13 @@ public class Async_Task extends AsyncTask<String, Void, String> {
         List<movie> list_movie;
         JsonParsing jsonParsing = new JsonParsing();
         list_movie = jsonParsing.json_parse(result);
-
+     gridView = new GridView(context);
         gridView_adapter.clear();
         for (movie m : list_movie) {
             gridView_adapter.add(m);
         }
+
+       // gridView.setSelection(MainFragment.POSITION);
+
     }
 }

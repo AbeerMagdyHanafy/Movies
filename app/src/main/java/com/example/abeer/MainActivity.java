@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Clic
         setContentView(R.layout.activity_main);
 
         mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_main);
-        mainFragment.setClickHandler(this);
+//        mainFragment.setClickHandler(this);
         if (findViewById(R.id.fragment_details) != null) {
 
             mTwoPane = true;
