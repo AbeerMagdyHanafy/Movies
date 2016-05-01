@@ -23,7 +23,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + DataBase.columns.original_title + " Text, "
                 + DataBase.columns.overview + " Text, "
                 + DataBase.columns.release_date + " Text, "
-                + DataBase.columns.id + " Text, "
+                + DataBase.columns.id + " Text unique, "
                 + DataBase.columns.vote_average + " Text);");
     }
 
