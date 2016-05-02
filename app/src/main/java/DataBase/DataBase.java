@@ -1,7 +1,9 @@
 package DataBase;
 
 import android.provider.BaseColumns;
-import com.example.ABeeR.movie;
+
+import com.example.abeer.movie;
+
 
 /**
  * Created by ABeeR on 23-Apr-16.

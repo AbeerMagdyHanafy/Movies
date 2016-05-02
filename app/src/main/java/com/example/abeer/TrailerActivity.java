@@ -1,4 +1,4 @@
-package com.example.ABeeR;
+package com.example.abeer;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -56,7 +56,7 @@ public class TrailerActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.menu_trailer, menu);
+        getMenuInflater().inflate(R.menu.menu_trailer, menu);
         return true;
     }
 

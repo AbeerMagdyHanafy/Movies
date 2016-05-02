@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:id="@+id/fragment_main"
-        android:name="com.example.ABeeR.MainFragment"/>
+        android:name="com.example.abeer.MainFragment"/>
 
     <FrameLayout
     android:layout_width="0dp"

@@ -1,4 +1,4 @@
-package com.example.ABeeR;
+package com.example.abeer;
 
 /**
  * Created by ABeeR on 20-Apr-16.

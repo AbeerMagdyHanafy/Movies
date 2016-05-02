@@ -1,4 +1,4 @@
-package com.example.ABeeR;
+package com.example.abeer;
 
 import android.content.Intent;
 import android.os.Bundle;

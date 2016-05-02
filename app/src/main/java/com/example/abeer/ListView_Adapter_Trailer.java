@@ -1,4 +1,4 @@
-package com.example.ABeeR;
+package com.example.abeer;
 
 import android.content.Context;
 import android.view.LayoutInflater;

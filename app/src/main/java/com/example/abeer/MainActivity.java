@@ -1,4 +1,4 @@
-package com.example.ABeeR;
+package com.example.abeer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Clic
 
 //        logo = getSupportActionBar();
 //        logo.setDisplayShowHomeEnabled(true);
-//        logo.setLogo(R.drawable.movie2);
+//        logo.setLogo(R.drawable.movie);
 //        logo.setDisplayUseLogoEnabled(true);
     }
 
