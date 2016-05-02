@@ -159,11 +159,11 @@ public class DetailsFragment extends Fragment {
                 if (!(cursor.getInt(6) == (id))) {
                     Favourite = false;
                     btn_favourite.setBackgroundResource(android.R.drawable.btn_star_big_off);
-                    btn_favourite.setClickable(true);
+                   // btn_favourite.setClickable(true);
                 } else if (cursor.getInt(6) == (id)) {
                     Favourite = true;
                     btn_favourite.setBackgroundResource(android.R.drawable.btn_star_big_on);
-                    btn_favourite.setClickable(false);
+                   // btn_favourite.setClickable(false);
                     break;
                 }
             } while (cursor.moveToNext());
@@ -221,7 +221,7 @@ public class DetailsFragment extends Fragment {
                 new_movie_favourite.close();
 
                 btn_favourite.setBackgroundResource(android.R.drawable.btn_star_big_on);
-                btn_favourite.setClickable(false);
+               // btn_favourite.setClickable(false);
                 Toast.makeText(getActivity(), Original_title + " is favourite ", Toast.LENGTH_SHORT).show();
             }
         });
