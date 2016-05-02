@@ -31,16 +31,7 @@ public class MainFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    public void setClickHandler(ClickHandler mClickHandler) {
-        this.mClickHandler = mClickHandler;
-    }
-
-    public interface ClickHandler {
-        public void openMovie(movie movie);
-    }
-
-    private ClickHandler mClickHandler;
+    static int POSITION = 0;
     GridView gridView;
     GridView_Adapter gridView_adapter;
     Async_Task async_task;
@@ -51,13 +42,14 @@ public class MainFragment extends Fragment {
     DataBaseHelper movie_favourite;
     List<movie> list_movie;
     ActionBar logo;
-    static int POSITION = 0;
-
+    private ClickHandler mClickHandler;
     private String mParam1;
     private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
+    public void setClickHandler(ClickHandler mClickHandler) {
+        this.mClickHandler = mClickHandler;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,7 +58,7 @@ public class MainFragment extends Fragment {
 
 //        logo = getSupportActionBar();
 //        logo.setDisplayShowHomeEnabled(true);
-//        logo.setLogo(R.drawable.movie);
+//        logo.setLogo(R.drawable.logo);
 //        logo.setDisplayUseLogoEnabled(true);
 
     }
@@ -106,7 +98,7 @@ public class MainFragment extends Fragment {
             // getSupportActionBar().setTitle(" Top Rated Movies");
         }
 
-
+        gridView.setSelection(POSITION);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -119,6 +111,7 @@ public class MainFragment extends Fragment {
                 //setGridView(top_rated);
             }
         });
+
 
         super.onStart();
     }
@@ -140,13 +133,11 @@ public class MainFragment extends Fragment {
         super.onResume();
     }
 
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_main, menu);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -162,7 +153,7 @@ public class MainFragment extends Fragment {
             gridView.setSelection(0);
             Toast.makeText(getActivity(), "movie_popular", Toast.LENGTH_SHORT).show();
             //getSupportActionBar().setTitle(" Popular Movies");
-            //getSupportActionBar().setLogo(R.drawable.movie);
+            //getSupportActionBar().setLogo(R.drawable.logo);
             return true;
         } else if (id == R.id.movie_toprated) {
             setGridView(top_rated + getString(R.string.api_key));
@@ -175,7 +166,7 @@ public class MainFragment extends Fragment {
 
             Toast.makeText(getActivity(), "movie_toprated", Toast.LENGTH_SHORT).show();
             //getSupportActionBar().setTitle(" Top Rated Movies");
-            //getSupportActionBar().setLogo(R.drawable.movie);
+            //getSupportActionBar().setLogo(R.drawable.logo);
             return true;
         } else if (id == R.id.favourite) {
             movie_favourite = new DataBaseHelper(getActivity());
@@ -223,7 +214,6 @@ public class MainFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -239,6 +229,10 @@ public class MainFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public interface ClickHandler {
+        public void openMovie(movie movie);
     }
 
     public interface OnFragmentInteractionListener {

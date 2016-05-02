@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity implements MainFragment.ClickHandler {
 
 
-    private boolean mTwoPane;
     DetailsFragment detailsFragment;
+    private boolean mTwoPane;
     private MainFragment mainFragment;
 
     @Override
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Clic
 
 //        logo = getSupportActionBar();
 //        logo.setDisplayShowHomeEnabled(true);
-//        logo.setLogo(R.drawable.movie);
+//        logo.setLogo(R.drawable.logo);
 //        logo.setDisplayUseLogoEnabled(true);
     }
 
@@ -60,21 +60,21 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Clic
 
     }
 //    class MyMovieHandler implements MainFragment.ClickHandler{
-//        public void openMovie(movie movie){
+//        public void openMovie(logo logo){
 //            if(mTwoPane){
 //                //Fragment Code
-//                detailsFragment.updateData(movie);
+//                detailsFragment.updateData(logo);
 //
 //
 //            }else {
 //                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
-//                intent.putExtra("Original_title", movie.getOriginal_title());
-//                intent.putExtra("Overview", movie.getOverview());
-//                intent.putExtra("backdrop_path", movie.getBackdrop_path());
-//                intent.putExtra("Vote_average", movie.getVote_average());
-//                intent.putExtra("Release_date", movie.getRelease_date());
-//                intent.putExtra("Poster_path", movie.getPoster_path());
-//                intent.putExtra("id", movie.getId());
+//                intent.putExtra("Original_title", logo.getOriginal_title());
+//                intent.putExtra("Overview", logo.getOverview());
+//                intent.putExtra("backdrop_path", logo.getBackdrop_path());
+//                intent.putExtra("Vote_average", logo.getVote_average());
+//                intent.putExtra("Release_date", logo.getRelease_date());
+//                intent.putExtra("Poster_path", logo.getPoster_path());
+//                intent.putExtra("id", logo.getId());
 //                startActivity(intent);
 //            }
 //

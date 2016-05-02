@@ -16,8 +16,7 @@
             <ImageView
                 android:id="@+id/image_poster"
                 android:layout_width="170dp"
-                android:layout_height="218dp"
-                android:src="@drawable/movie" />
+                android:layout_height="218dp" />
 
             <TextView
                 android:id="@+id/tv_date"

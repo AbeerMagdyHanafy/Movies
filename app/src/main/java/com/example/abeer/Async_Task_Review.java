@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Async_Task_Review extends AsyncTask<String, Void, String> {
 
-    String url1 = "https://api.themoviedb.org/3/movie/";
+    String url1 = "https://api.themoviedb.org/3/logo/";
     String url2 = "/reviews?api_key=272f7f5ca4e84122fde686ff11175500";
     int id;
     Context context;

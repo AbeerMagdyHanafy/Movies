@@ -69,6 +69,7 @@ public class DetailsFragment extends Fragment {
 
     public void updateData(movie movie){
 
+
         Original_title = movie.getOriginal_title();//intent.getStringExtra("Original_title");
         Overview = movie.getOverview(); //intent.getStringExtra("Overview");
         backdrop_path = movie.getBackdrop_path(); //intent.getStringExtra("backdrop_path");
@@ -107,10 +108,65 @@ public class DetailsFragment extends Fragment {
 
     }
 
+
+    public void updateData(movie movie) {
+
+
+        Original_title = movie.getOriginal_title();//intent.getStringExtra("Original_title");
+        Overview = movie.getOverview(); //intent.getStringExtra("Overview");
+        backdrop_path = movie.getBackdrop_path(); //intent.getStringExtra("backdrop_path");
+        Release_date = movie.getAuthor_review();//intent.getStringExtra("Release_date");
+        Vote_average = movie.getVote_average();//intent.getDoubleExtra("Vote_average", 0.0);
+        id = movie.getId();// intent.getIntExtra("id", 0);
+        Poster_path = movie.getPoster_path();//intent.getStringExtra("Poster_path");
+
+        Picasso.with(getActivity()).load("http://image.tmdb.org/t/p/w342" + backdrop_path)
+                .resize(360, 380)
+                .centerCrop()
+                .into(image_poster);
+        tv_title.setText(Original_title);
+        tv_overview.setText(Overview);
+        tv_date.setText(Release_date);
+        tv_rate.setText(Vote_average + "/10");
+
+        movie_favourite = new DataBaseHelper(getActivity());
+        SQLiteDatabase sqldb = movie_favourite.getReadableDatabase();
+        Cursor cursor = sqldb.rawQuery("select * from " + DataBase.Table, null);
+        if (cursor.moveToFirst()) {
+            do {
+                if (!(cursor.getInt(6) == (id))) {
+                    Favourite = false;
+                    btn_favourite.setBackgroundResource(android.R.drawable.btn_star_big_off);
+                } else if (cursor.getInt(6) == (id)) {
+                    Favourite = true;
+                    btn_favourite.setBackgroundResource(android.R.drawable.btn_star_big_on);
+                    btn_favourite.setClickable(false);
+                    break;
+                }
+            } while (cursor.moveToNext());
+        }
+
+
+    }
+
+    static public boolean isNetworkAvailable(Context context) {
+
+        ConnectivityManager cm = (ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+
+// if no network is available networkInfo will be null
+
+// otherwise check if we are connected
+
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
     @Override
     public void onStart() {
 
-                Intent intent = this.getActivity().getIntent();
+        Intent intent = this.getActivity().getIntent();
         Original_title = intent.getStringExtra("Original_title");
         Overview = intent.getStringExtra("Overview");
         backdrop_path = intent.getStringExtra("backdrop_path");
@@ -127,7 +183,6 @@ public class DetailsFragment extends Fragment {
         tv_overview.setText(Overview);
         tv_date.setText(Release_date);
         tv_rate.setText(Vote_average + "/10");
-
 
 
         movie_favourite = new DataBaseHelper(getActivity());
@@ -205,20 +260,6 @@ public class DetailsFragment extends Fragment {
             }
         });
         super.onStart();
-    }
-
-    static public boolean isNetworkAvailable(Context context) {
-
-        ConnectivityManager cm = (ConnectivityManager)
-                context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-
-// if no network is available networkInfo will be null
-
-// otherwise check if we are connected
-
-        return networkInfo != null && networkInfo.isConnected();
     }
 
     public void onButtonPressed(Uri uri) {
