@@ -98,10 +98,12 @@ public class MainFragment extends Fragment {
             // getSupportActionBar().setTitle(" Top Rated Movies");
         }
 
-        gridView.setSelection(POSITION);
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
                 movie movie = gridView_adapter.getItem(position);
                 ((MainActivity) getActivity()).openMovie(movie);
                 POSITION = position;
@@ -111,7 +113,6 @@ public class MainFragment extends Fragment {
                 //setGridView(top_rated);
             }
         });
-
 
         super.onStart();
     }
