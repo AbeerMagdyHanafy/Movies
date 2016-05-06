@@ -13,8 +13,9 @@ import java.util.List;
 public class Async_Task_Trailer extends AsyncTask<String, Void, String> {
 
     String url1 = "https://api.themoviedb.org/3/movie/";
-    String url2 = "/videos?api_key=272f7f5ca4e84122fde686ff11175500";
-    int id = 209112;
+    String url2 = "/videos?api_key=";
+
+    int id;
     Context context;
     ListView_Adapter_Trailer listView_adapter_trailer;
 
@@ -31,7 +32,7 @@ public class Async_Task_Trailer extends AsyncTask<String, Void, String> {
         String jsonStr = null;
         try {
             Log.d("ID", String.valueOf(id));
-            jsonStr = sh.call_connect(url1 + String.valueOf(id) + url2);
+            jsonStr = sh.call_connect(url1 + String.valueOf(id) + url2 +  context.getString(R.string.api_key));
             Log.d("jsonStr", jsonStr);
 
         } catch (IOException e) {

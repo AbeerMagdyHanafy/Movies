@@ -16,8 +16,13 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Clic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_main);
-//        mainFragment.setClickHandler(this);
+        mainFragment = new MainFragment();
+
+       mainFragment.setClickHandler(MainActivity.this);
+
+
         if (findViewById(R.id.fragment_details) != null) {
 
             mTwoPane = true;
@@ -25,13 +30,17 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Clic
             detailsFragment = new DetailsFragment();
 
             if (savedInstanceState == null) {
+                Bundle arguments = new Bundle();
+                
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_details, detailsFragment)
                         .commit();
+
             }
         } else {
             mTwoPane = false;
         }
+
 
 
 //        logo = getSupportActionBar();

@@ -48,12 +48,11 @@ public class DetailsFragment extends Fragment {
     boolean Favourite = false;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_details, container , false);
+        View rootView = inflater.inflate(R.layout.fragment_details, container, false);
         btn_trailer = (Button) rootView.findViewById(R.id.btn_trailer);
         btn_review = (Button) rootView.findViewById(R.id.btn_review);
         btn_favourite = (Button) rootView.findViewById(R.id.btn_favourite);
@@ -68,23 +67,24 @@ public class DetailsFragment extends Fragment {
     }
 
 
-
-    public void updateData(movie movie){
-
-
+    public void updateData(movie movie) {
 
         Original_title = movie.getOriginal_title();//intent.getStringExtra("Original_title");
         Overview = movie.getOverview(); //intent.getStringExtra("Overview");
         backdrop_path = movie.getBackdrop_path(); //intent.getStringExtra("backdrop_path");
         Release_date = movie.getAuthor_review();//intent.getStringExtra("Release_date");
         Vote_average = movie.getVote_average();//intent.getDoubleExtra("Vote_average", 0.0);
-        id =movie.getId();// intent.getIntExtra("id", 0);
+        id = movie.getId();// intent.getIntExtra("id", 0);
         Poster_path = movie.getPoster_path();//intent.getStringExtra("Poster_path");
 
+        // if(image_poster == null)
         Picasso.with(getActivity()).load("http://image.tmdb.org/t/p/w342" + backdrop_path)
                 .resize(360, 380)
                 .centerCrop()
                 .into(image_poster);
+//        else
+//        Toast.makeText(getActivity(),"image poster", Toast.LENGTH_SHORT).show();
+
         tv_title.setText(Original_title);
         tv_overview.setText(Overview);
         tv_date.setText(Release_date);
@@ -106,12 +106,7 @@ public class DetailsFragment extends Fragment {
                 }
             } while (cursor.moveToNext());
         }
-
-
-
     }
-
-
 
 
     static public boolean isNetworkAvailable(Context context) {
@@ -131,7 +126,7 @@ public class DetailsFragment extends Fragment {
     @Override
     public void onStart() {
 
-                Intent intent = this.getActivity().getIntent();
+        Intent intent = this.getActivity().getIntent();
         Original_title = intent.getStringExtra("Original_title");
         Overview = intent.getStringExtra("Overview");
         backdrop_path = intent.getStringExtra("backdrop_path");
@@ -140,15 +135,19 @@ public class DetailsFragment extends Fragment {
         id = intent.getIntExtra("id", 0);
         Poster_path = intent.getStringExtra("Poster_path");
 
+
+        //if (image_poster != null)
         Picasso.with(getActivity()).load("http://image.tmdb.org/t/p/w342" + backdrop_path)
                 .resize(360, 380)
                 .centerCrop()
                 .into(image_poster);
+        //else
+        //Toast.makeText(getActivity(), "image poster", Toast.LENGTH_SHORT).show();
+
         tv_title.setText(Original_title);
         tv_overview.setText(Overview);
         tv_date.setText(Release_date);
         tv_rate.setText(Vote_average + "/10");
-
 
 
         movie_favourite = new DataBaseHelper(getActivity());
@@ -159,11 +158,11 @@ public class DetailsFragment extends Fragment {
                 if (!(cursor.getInt(6) == (id))) {
                     Favourite = false;
                     btn_favourite.setBackgroundResource(android.R.drawable.btn_star_big_off);
-                   // btn_favourite.setClickable(true);
+                    // btn_favourite.setClickable(true);
                 } else if (cursor.getInt(6) == (id)) {
                     Favourite = true;
                     btn_favourite.setBackgroundResource(android.R.drawable.btn_star_big_on);
-                   // btn_favourite.setClickable(false);
+                    // btn_favourite.setClickable(false);
                     break;
                 }
             } while (cursor.moveToNext());
@@ -221,7 +220,7 @@ public class DetailsFragment extends Fragment {
                 new_movie_favourite.close();
 
                 btn_favourite.setBackgroundResource(android.R.drawable.btn_star_big_on);
-               // btn_favourite.setClickable(false);
+                // btn_favourite.setClickable(false);
                 Toast.makeText(getActivity(), Original_title + " is favourite ", Toast.LENGTH_SHORT).show();
             }
         });
@@ -244,7 +243,9 @@ public class DetailsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }    public static DetailsFragment newInstance(String param1, String param2) {
+    }
+
+    public static DetailsFragment newInstance(String param1, String param2) {
         DetailsFragment fragment = new DetailsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -256,6 +257,7 @@ public class DetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
 

@@ -42,13 +42,16 @@ public class MainFragment extends Fragment {
     DataBaseHelper movie_favourite;
     List<movie> list_movie;
     ActionBar logo;
-    private ClickHandler mClickHandler;
+
+
+
+    private ClickHandler clickHandler;
     private String mParam1;
     private String mParam2;
     private OnFragmentInteractionListener mListener;
 
-    public void setClickHandler(ClickHandler mClickHandler) {
-        this.mClickHandler = mClickHandler;
+    public void setClickHandler(ClickHandler clickHandler) {
+        this.clickHandler = clickHandler;
     }
 
     @Override
@@ -60,6 +63,7 @@ public class MainFragment extends Fragment {
 //        logo.setDisplayShowHomeEnabled(true);
 //        logo.setLogo(R.drawable.logo);
 //        logo.setDisplayUseLogoEnabled(true);
+
 
     }
 
@@ -102,15 +106,10 @@ public class MainFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
                 movie movie = gridView_adapter.getItem(position);
                 ((MainActivity) getActivity()).openMovie(movie);
+//                clickHandler.openMovie(movie);
                 POSITION = position;
-
-//                Toast.makeText(getActivity(),gridView_adapter.getItem(position).getOriginal_title(),Toast.LENGTH_SHORT)
-//                 .show();
-                //setGridView(top_rated);
             }
         });
 
@@ -233,7 +232,7 @@ public class MainFragment extends Fragment {
     }
 
     public interface ClickHandler {
-        public void openMovie(movie movie);
+         void openMovie(movie movie);
     }
 
     public interface OnFragmentInteractionListener {
