@@ -32,7 +32,7 @@ public class Async_Task_Trailer extends AsyncTask<String, Void, String> {
         String jsonStr = null;
         try {
             Log.d("ID", String.valueOf(id));
-            jsonStr = sh.call_connect(url1 + String.valueOf(id) + url2 +  context.getString(R.string.api_key));
+            jsonStr = sh.call_connect(url1 + String.valueOf(id) + url2 + context.getString(R.string.api_key));
             Log.d("jsonStr", jsonStr);
 
         } catch (IOException e) {
