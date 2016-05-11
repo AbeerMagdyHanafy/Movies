@@ -91,7 +91,7 @@ public class Async_Task extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result)  //result da return from back
     {
 
-        Log.d("result", result);
+//        Log.d("result", result);
         if (result != null) {
             JsonParsing jsonParsing = new JsonParsing();
 
