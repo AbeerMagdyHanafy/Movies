@@ -44,7 +44,6 @@ public class MainFragment extends Fragment {
     ActionBar logo;
 
 
-
     private ClickHandler clickHandler;
     private String mParam1;
     private String mParam2;
@@ -56,8 +55,8 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
+        super.onCreate(savedInstanceState);
 
 //        logo = getSupportActionBar();
 //        logo.setDisplayShowHomeEnabled(true);
@@ -75,8 +74,10 @@ public class MainFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         gridView_adapter = new GridView_Adapter(getActivity());
         gridView = (GridView) rootView.findViewById(R.id.grid_view);
-        setGridView(most_popular + getString(R.string.api_key));
+        setGridView(most_popular + getString(R.string.api_key), "most_popular");
         //gridView.setAdapter(gridView_adapter);
+        // gridView.setSelection(0);
+
         setHasOptionsMenu(true);///
 
         return rootView;
@@ -88,16 +89,20 @@ public class MainFragment extends Fragment {
         sharedpreferences = this.getActivity().getSharedPreferences(CHOICE, Context.MODE_PRIVATE);
         String choice = sharedpreferences.getString(CHOICE, CHOICE);
 
+        //gridView.setSelection(0);
+        //gridView.setSelected(true);
+
+
         if (choice.equals("movie_popular")) {
-            setGridView(most_popular + getString(R.string.api_key));
+            setGridView(most_popular + getString(R.string.api_key), "most_popular");
             gridView.setAdapter(gridView_adapter);
-            gridView.setSelection(0);
+
             Toast.makeText(getActivity(), "movie_popular", Toast.LENGTH_LONG).show();
             //getSupportActionBar().setTitle(" Popular Movies");
         } else if (choice.equals("movie_toprated")) {
-            setGridView(top_rated + getString(R.string.api_key));
+            setGridView(top_rated + getString(R.string.api_key), "top_rated");
             gridView.setAdapter(gridView_adapter);
-            gridView.setSelection(0);
+            //gridView.setSelection(0);
             Toast.makeText(getActivity(), "movie_toprated", Toast.LENGTH_LONG).show();
             // getSupportActionBar().setTitle(" Top Rated Movies");
         }
@@ -116,12 +121,12 @@ public class MainFragment extends Fragment {
         super.onStart();
     }
 
-    private void setGridView(String choice) {
+    private void setGridView(String choice, String sort) {
 //        gridView = (GridView) getView().findViewById(R.id.grid_view);
         //  gridView_adapter = new GridView_Adapter(getActivity());
-        async_task = new Async_Task(getActivity(), gridView_adapter, choice, gridView);
+        async_task = new Async_Task(getActivity(), gridView_adapter, choice, gridView, sort);
         async_task.execute();
-        gridView.setSelection(0);
+        //gridView.setSelection(POSITION);
         gridView.setAdapter(gridView_adapter);
 
 
@@ -140,24 +145,36 @@ public class MainFragment extends Fragment {
     }
 
     @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        //gridView.setSelection(0);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.movie_popular) {
-            setGridView(most_popular + getString(R.string.api_key));
+            setGridView(most_popular + getString(R.string.api_key), "most_popular");
             //   gridView.setAdapter(gridView_adapter);
             sharedpreferences = this.getActivity().getSharedPreferences(CHOICE, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(CHOICE, "movie_popular");
             editor.commit();
-            gridView.setSelection(0);
+            // gridView.setSelection(POSITION);
+            //gridView.setSelection(0);
+            //gridView.setPressed(true);
+            //gridView.smoothScrollToPosition(0);
+            //Log.d("itemselected", String.valueOf(gridView.getCheckedItemPosition()));
             Toast.makeText(getActivity(), "movie_popular", Toast.LENGTH_SHORT).show();
             //getSupportActionBar().setTitle(" Popular Movies");
             //getSupportActionBar().setLogo(R.drawable.logo);
             return true;
         } else if (id == R.id.movie_toprated) {
-            setGridView(top_rated + getString(R.string.api_key));
-            gridView.setSelection(0);
+            setGridView(top_rated + getString(R.string.api_key), "top_rated");
+            //gridView.setSelection(POSITION);
+            //gridView.setItemChecked(0,true);
+
             gridView.setAdapter(gridView_adapter);
             sharedpreferences = this.getActivity().getSharedPreferences(CHOICE, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -189,6 +206,7 @@ public class MainFragment extends Fragment {
                 gridView = (GridView) getView().findViewById(R.id.grid_view);
                 gridView_adapter = new GridView_Adapter(getActivity());
                 gridView_adapter.clear();
+                //gridView.setSelection(POSITION);
 
                 if (cursor.moveToFirst()) {
                     do {
@@ -232,7 +250,7 @@ public class MainFragment extends Fragment {
     }
 
     public interface ClickHandler {
-         void openMovie(movie movie);
+        void openMovie(movie movie);
     }
 
     public interface OnFragmentInteractionListener {

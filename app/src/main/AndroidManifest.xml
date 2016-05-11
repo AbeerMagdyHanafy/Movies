@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-
+            android:screenOrientation="locked"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,9 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailsActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".TrailerActivity" />
-        <activity android:name=".ReviewActivity" />
+        <activity android:name=".DetailsActivity" android:screenOrientation="locked"/>
+        <activity android:name=".TrailerActivity" android:screenOrientation="locked"/>
+        <activity android:name=".ReviewActivity"  android:screenOrientation="locked"/>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

@@ -11,16 +11,26 @@ import java.util.ArrayList;
  */
 public class JsonParsing {
 
+    static ArrayList<movie> movieArrayList;
+
+    public static ArrayList<movie> getMovieArrayList() {
+        return movieArrayList;
+    }
+
+    public static void setMovieArrayList(ArrayList<movie> movieArrayList) {
+        JsonParsing.movieArrayList = movieArrayList;
+    }
+
     public ArrayList<movie> json_parse(String result) {
-        ArrayList<movie> movieArrayList = new ArrayList<>();
+        movieArrayList = new ArrayList<>();
 
         try {
+
             JSONObject jsonRootObject = new JSONObject(result);
 
             JSONArray jsonArray = jsonRootObject.optJSONArray("results");
 
             for (int i = 0; i < jsonArray.length(); i++) {
-
                 movie m = new movie();
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -50,12 +60,18 @@ public class JsonParsing {
                 m.setUrl_review(url_review);
 
                 movieArrayList.add(m);
+
             }
+            setMovieArrayList(movieArrayList);
+
 
         } catch (JSONException e) {
+
             e.printStackTrace();
         }
 
         return movieArrayList;
     }
+
+
 }

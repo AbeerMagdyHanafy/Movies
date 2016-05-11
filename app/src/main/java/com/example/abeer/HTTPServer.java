@@ -37,6 +37,15 @@ public class HTTPServer {
             return null;
         }
         moviesJSONStr = buffer.toString();
+        setMoviesJSONStr(moviesJSONStr);
         return moviesJSONStr;
+    }
+
+    public String getMoviesJSONStr() {
+        return moviesJSONStr;
+    }
+
+    public void setMoviesJSONStr(String moviesJSONStr) {
+        this.moviesJSONStr = moviesJSONStr;
     }
 }
